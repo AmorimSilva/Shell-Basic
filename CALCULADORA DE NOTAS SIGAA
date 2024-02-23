@@ -1,0 +1,92 @@
+##### PROVA DE COMPUTAÇÃO AVANÇADA - U F R N ########
+##### Desenvolvedor Responsável : Samuel A. Silva ###
+##### Contato: amorim.silva.132@ufrn.edu.br #########
+##### Criação: 10/11/2022 ###########################
+##### Modificação: 17/11/2022 #######################
+########## INFORMAÇÕES IMPORTANTES ##################
+#             cadeia das notas                      #
+#            UNIDADE 01 = PROVA 1 > 5               #
+#            UNIDADE 02 = PROVA 2 > 5               #
+#            UNIDADE 03 = PROVA 3 > 5               #
+#                REC = PROVA 4                      #
+#   MÉDIA DAS 3 UNIDADES TEM QUE SER MAIOR QUE 5    #
+#    CASO CONTRARIO É NECESSARIO A PROVA 4 (REC)    #
+#####################################################
+############### CALCULOS DAS MEDIAS #################
+#####################################################
+
+def n(media, U1, U2, U3, REC):
+    if U1 >= U2 or U2 <= U3:
+        U2 = REC
+        media = (U1 + U2 + U3) / 3
+        media = round(media, 2)
+        print('Média do aluno:',media)
+    elif U2 >= U1 or U1 <= U3:
+        U1 = REC
+        media = (U1 + U2 + U3) / 3
+        media = round(media, 2)
+        print('Média do aluno:',media)
+        
+    elif U1 >= U3 or U3 <= U2:
+        U3 = REC
+        media = (U1 + U2 + U3) / 3
+        media = round(media, 2)
+        print('Média do aluno:',media)
+    return(media)
+
+############### INTERFACE INICIAL #################
+
+while True:
+    print('Presença (Unidade) do Aluno:')
+    paula = float(input('Aulas presente: '))
+    freq = (paula/68)*100
+    print(freq, "%")
+
+    print('NOTAS DAS UNIDADES')
+    U1 = float(input('UNIDADE 01: '))
+    U2 = float(input('UNIDADE 02: '))
+    U3 = float(input('UNIDADE 03: '))
+    media = (U1 + U2 + U3) / 3
+    media = round(media, 2)
+    print('A MÉDIA FOI DE:',media)
+
+####### UNIDADE 4 / SISTEMA DE FREQUÊNCIA ########
+    if U1 < 3.0 or U2 < 3.0 or U3 < 3.0:
+      REC = float(input('O ALUNO FOI PARA A RECUPERAÇÃO, DIGITE A SUA NOTA U4: '))
+      media= n(media, U1, U2, U3, REC)
+
+    if media >= 7.0:
+      if freq < 75.00:
+        print("REPF com", freq, "% de presença")
+      else:  
+        print("APR")
+
+    elif media >= 5.0 and media < 7.0:
+      if U1 < 3.0 or U2 < 3.0 or U3 < 3.0:
+        if REC > 3.0 and freq > 75.00:
+           print("APRN")
+        elif REC < 3.0 and freq > 75.00:
+          print("REP")
+        elif REC < 3.0 and freq < 75.00:
+          print("RENF", freq, "% de presença")
+      else: 
+          print("APRN")
+
+    elif media < 5.0:
+      if freq < 75.00:
+        print("REMF com", conta, "% de presença")
+      else: 
+        print("REP")
+
+    elif media <= 3.0:
+      print("REP")
+      if freq < 75.00:
+        print("REMF com", freq, "% de presença")
+
+        
+###################  FINAL #####################
+    resposta = str(input("Continuar: SIM = S,  NAO = N "))
+    if resposta in 'Ss':
+      continue
+    if resposta in 'Nn':
+      break
